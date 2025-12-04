@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+  <title>Home</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<style>
+
+
+  .open-button,
+  .close-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #a08824;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  .close-button{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #a08824;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0;
+    width: 300px;
+  } 
+
+  .open-button:hover,
+  .close-button:hover {
+    background-color: #dec594;
+  }
+
+  
+  .card-text {
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .card-title {
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .boton-elegante {
+    padding: 15px 30px;
+    border: 2px solid #2c2c2c;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 20px;
+    outline: none;
+    position: relative;
+    height: 50px;
+    width: 150px;
+  }
+
+  .boton-elegante::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0) 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+  }
+
+  .boton-elegante:hover::after {
+    transform: scale(4);
+  }
+
+  .boton-elegante:hover {
+    border-color: #666666;
+    background: #292929;
+  }
+
+  /* From Uiverse.io by ammarsaa */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #e11c1c;
+  }
+
+  .title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    color: #e1e0e0;
+  }
+
+  .title::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+
+  .title::before,
+  .title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 15px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #7d7006;
+  }
+
+  .message,
+  .signin {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .signin {
+    text-align: center;
+  }
+
+  .signin a:hover {
+    text-decoration: underline rgb(0, 0, 0);
+  }
+
+  .signin a {
+    color: #000000;
+  }
+
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .form label {
+    position: relative;
+  }
+
+  .form label .input {
+    background-color: #0e0d0d;
+    color: #fff;
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+
+  .form label .input+span {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+
+  .form label .input:placeholder-shown+span {
+    top: 12.5px;
+    font-size: 0.9em;
+  }
+
+  .form label .input:focus+span,
+  .form label .input:valid+span {
+    color: #ffffff;
+    top: 0px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+
+  .input {
+    font-size: medium;
+  }
+
+  .submit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+    background-color: #000000;
+  }
+
+  .submit:hover {
+    background-color: #a3812b96;
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+/* chatbot */
+#chatContainer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 90%; /* Responsive width */
+            max-width: 350px;
+            overflow: hidden;
+            display: none; /* Initially hidden */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Fixed position above the button */
+            right: 20px;
+            animation: slideIn 0.3s ease; /* Animation for opening */
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+        #chatbox {
+            border: none;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        #userInput {
+            width: calc(100% - 90px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+        
+            color: rgb(236, 0, 0);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+        .user-message {
+            text-align: right;
+            margin: 5px 0;
+            color: #007BFF;
+        }
+        .bot-message {
+            text-align: left;
+            margin: 5px 0;
+            color: #333;
+        }
+        #helpButton {
+            position: fixed;
+            bottom: 70px; /* Adjusted position */
+            right: 20px;
+            padding: 8px 12px; /* Smaller padding */
+            background-color: #dac71f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: blink 1s infinite; /* Blinking effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            font-size: 14px; /* Smaller font size */
+            transition: background-color 0.3s, transform 0.2s; /* Transition for hover effect */
+        }
+        #helpButton:hover {
+            background-color: #000000; /* Darker shade on hover */
+            transform: translateY(-3px); /* Slight lift effect on hover */
+            color: white;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #333;
+        }
+/* chatbot khatam */
+/* request demo */
+/* --- Modal Background and Positioning --- */
+.cta-modal-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* --- Modal Box Content --- */
+.cta-modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; /* Could be 90% or 60% */
+    max-width: 500px; /* Max width for larger screens */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- Close Icon Styling --- */
+.demo-modal-close-icon {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.demo-modal-close-icon:hover,
+.demo-modal-close-icon:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+/* --- Form Field Styling --- */
+#submitDemoForm label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+#submitDemoForm input[type="text"],
+#submitDemoForm input[type="email"],
+#submitDemoForm select,
+#submitDemoForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    font-size: 16px;
+}
+#submitDemoForm textarea {
+    resize: vertical;
+}
+
+/* --- Submit Button Styling --- */
+.demo-submit-btn {
+    background-color:#dac71f; /* Use your primary brand color */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.demo-submit-btn:hover {
+    background-color: #000000;
+}
+
+/* --- Success Message Styling --- */
+.cta-success-state {
+    text-align: center;
+}
+.cta-success-state h4 {
+    color: #4CAF50;
+    font-size: 1.8rem;
+}
+
+</style>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1 class="sitename">Home Styler</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="houseservice.html">Shop</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <!-- Navbar Example -->
+           <span id="userGreeting" style="margin-right:20px;">Guest</span>
+
+<li><button id="registerLogoutButton"  style="background-color: #dac71f;" style="color: white;" class="btn btn-primary" >Register</button></li>
+
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color: transparent; border: none; color: white;" >
+
+    
+
+      <div class="modal-body" >
+         
+        <form class="form" id="registerform">
+<!-- ____________________________________ -->
+       <div class="modal-header" >
+            
+        
+        <!-- Fixed close button -->
+        <button type="button" class="close" aria-label="Close" onclick="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<!-- ____________________________________ -->
+          <div class="flex">
+            <label>
+              <input class="input" type="text" placeholder="" id="firstname" required>
+              <span>Firstname</span>
+            </label>
+
+            <label>
+              <input class="input" type="text" placeholder="" id="lastname" required>
+              <span>Lastname</span>
+            </label>
+          </div>
+
+          <label>
+            <input class="input" type="email" placeholder="" id="email" required>
+            <span>Email</span>
+          </label>
+
+          <label>
+            <input class="input" type="password" placeholder="" id="password" required>
+            <span>Password</span>
+          </label>
+
+          <label>
+            <input class="input" type="password" placeholder="" id="confirmPassword" required>
+            <span>Confirm password</span>
+          </label>
+
+          <button type="button" class="submit" onclick="registerUser()">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const registerLogoutButton = document.getElementById("registerLogoutButton");
+const userGreeting = document.getElementById("userGreeting");
+const registerForm = document.getElementById("registerform");
+
+// Initially button opens modal
+registerLogoutButton.onclick = function() {
+  if (registerLogoutButton.dataset.loggedIn === "true") {
+    logoutUser();
+  } else {
+    $('#registerModal').modal('show');
+  }
+};
+
+function registerUser() {
+  const firstName = document.getElementById("firstname").value;
+  if (!firstName) return; // simple validation
+
+  closeModal();
+
+  // Show user's name
+  userGreeting.innerHTML = firstName;
+
+  // Change button to Logout
+  registerLogoutButton.innerHTML = "Logout";
+  registerLogoutButton.classList.remove("btn-primary");
+  registerLogoutButton.classList.add("btn-danger");
+  registerLogoutButton.dataset.loggedIn = "true"; // mark as logged in
+}
+
+function logoutUser() {
+  // Reset username
+  userGreeting.innerHTML = "Guest";
+
+  // Reset button
+  registerLogoutButton.innerHTML = "Register";
+  registerLogoutButton.classList.remove("btn-danger");
+  registerLogoutButton.classList.add("btn-primary");
+  registerLogoutButton.dataset.loggedIn = "false";
+
+  // Clear form inputs
+  registerForm.reset();
+}
+
+// Custom close function for modal
+function closeModal() {
+  $('#registerModal').modal('hide');
+  registerForm.reset(); // reset form on close
+}
+</script>
+
+
+
+  <main class="main">
+    <section id="hero" class="hero section dark-background">
+      <img src="assets/homestyler pics/shopping background.jpg" class="hero-bg" alt="" data-aos="fade-in">
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <h2 class="card-text">New Arrivals</h2>
+        <p>We create <span class="typed" data-typed-items="Furniture,Houses,Kitchen,Bathroom,Lighting"></span></p>
+        <div>
+          <a href="#about" class="cta-btn">Get Started</a>
+          <a href="/assets/pages/gallery.html" class="cta-btn2">Gallery</a>
+          <!-- chatbot -->
+          <div id="chatContainer">
+            <button class="closeButton" onclick="closeChat()">×</button>
+            <div id="chatbox"></div>
+            <div style="display: flex; padding: 10px;">
+                <input type="text" id="userInput" placeholder="Apna sawal likhain...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <button id="helpButton">Need Help</button>
+        
+      <!-- chatbot end -->
+
+     
+
+    </section>
+   <section id="about" class="about section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+        <p>Empowering the future of interior design through cutting-edge 3D visualization and digital transformation.</p>
+      </div>
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/homestyler pics/side map.jpeg" class="img-fluid" alt="Homestyler platform overview map">
+          </div>
+
+          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+            <h3>The Platform for Next-Generation Design</h3>
+            <p class="fst-italic">
+              Homestyler, a global platform jointly established by **Alibaba Group** and **Easyhome New Retail Group**, is dedicated to driving the digital evolution of the interior design and furnishing industries. We provide a comprehensive, efficient, cloud-based 3D design ecosystem for professionals worldwide.
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <span>**Advanced 3D Modeling Tools:** Offering high-fidelity visualization and rendering capabilities for complex projects.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>**Industry-Leading Product Library:** Access to millions of real-world furniture and decor items for seamless integration into designs.</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>**Digital Transformation Solutions:** Providing specialized B2B services for furniture manufacturers and real estate developers.</span></li>
+            </ul>
+            <a href="/assets/pages/structure.html" class="read-more"><span>Make a Structure</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+</section>
+   <!-- /About Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+      
+         <iframe src="/assets/pages/slider.html" width="100%" height="500"></iframe>
+      </div>
+    </section><!-- /Services Section -->
+    <!-- Features Section -->
+    <section id="features" class="features section" style="background-color:#000000;">
+
+      <!-- Section Title -->
+      <!-- Call To Action Section -->
+    <section id="cta" class="cta section"  style="background-color: #000000;">
+    <div class="container" data-aos="zoom-in" >
+
+        <div class="row">
+            <div class="col-xl-9 text-center text-xl-start">
+                <h3 style="color: white;">Accelerate Your Digital Transformation</h3>
+                <p style="color: white;">Discover how Homestyler’s enterprise solutions can integrate 3D visualization into your sales and marketing workflows, driving efficiency and client engagement.</p>
+            </div>
+            <div class="col-xl-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="#" id="openDemoModal"   style="
+    color:black;
+    background-color:#dac71f;
+    border-radius:10px;
+    font-size:28px;
+    padding:12px 30px;
+    border:none;
+    cursor:pointer;
+    font-weight:700;
+    transition:0.25s ease;
+  "
+  onmouseover="this.style.transform='scale(1.08)'; this.style.backgroundColor='#e8db56';"
+  onmouseout="this.style.transform='scale(1)'; this.style.backgroundColor='#dac71f';"
+  onmousedown="this.style.transform='scale(0.90)'"
+  onmouseup="this.style.transform='scale(1.08)'"
+>Request Demo</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<div id="demoRequestModal" class="cta-modal-container">
+    <div id="demoModalContent" class="cta-modal-content">
+
+        <button type="button" id="closeDemoModalTop" class="demo-modal-close-icon">&times;</button> 
+
+        <div id="demoFormWrapper">
+            <h4>Schedule Your Homestyler Enterprise Demo</h4>
+            <p>Tell us a little about your business so we can tailor the demonstration to your specific needs.</p>
+            
+            <form id="submitDemoForm" method="POST">
+                
+                <label for="demo-name">Your Name*</label>
+                <input type="text" id="demo-name" name="name" required>
+
+                <label for="demo-email">Work Email*</label>
+                <input type="email" id="demo-email" name="email" required>
+
+                <label for="demo-company">Company Name*</label>
+                <input type="text" id="demo-company" name="company" required>
+                
+                <label for="demo-industry">Your Industry Focus*</label>
+                <select id="demo-industry" name="industry" required>
+                    <option value="" disabled selected>Select one...</option>
+                    <option value="Furniture Manufacturing">Furniture Manufacturing</option>
+                    <option value="Real Estate Development">Real Estate Development</option>
+                    <option value="Interior Design Firm">Large Interior Design Firm</option>
+                    <option value="Retail/E-commerce">Retail/E-commerce</option>
+                    <option value="Other Enterprise">Other</option>
+                </select>
+
+                <label for="demo-goals">Primary Goal for 3D Visualization</label>
+                <textarea id="demo-goals" name="goals" rows="3"></textarea>
+                
+                <button type="submit" class="demo-submit-btn">Submit Request</button>
+            </form>
+        </div>
+
+        <div id="demoSuccessMessage" class="cta-success-state" style="display:none;">
+            <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: #4CAF50; margin-bottom: 15px;"></i>
+            <h4>Thank You! Your Request is Confirmed.</h4>
+            <p>The Homestyler Enterprise team has received your demo request and is reviewing your information.</p>
+            
+            <hr>
+            
+            <p>
+                **What Happens Next?**<br>
+                A dedicated account representative will contact you directly within **1-2 business days** to schedule your personalized demonstration.
+            </p>
+
+            <button id="closeDemoModalSuccess" class="demo-submit-btn">Continue to Site</button>
+        </div>
+        
+    </div>
+</div>
+
+        </div>
+
+      </section><!-- /Call To Action Section -->
+      
+      <!-- contact section yaha se start he -->
+      <section id="contact" class="contact section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contact</h2>
+            <p>Feel free to contact us.</p>
+        </div><!-- End Section Title -->
+    
+        <div class="container" data-aos="fade" data-aos-delay="100">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <i class="bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>Pakistan,Karachi</p>
+                        </div>
+                    </div><!-- End Info Item -->
+    
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-telephone flex-shrink-0"></i>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>+92 12345678</p>
+                        </div>
+                    </div><!-- End Info Item -->
+    
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                        <i class="bi bi-envelope flex-shrink-0"></i>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>homestyler@gmail.com</p>
+                        </div>
+                    </div><!-- End Info Item -->
+    
+                </div>
+    
+                <div class="col-lg-8">
+                    <form id="myForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                            </div>
+    
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                            </div>
+    
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                            </div>
+    
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                            </div>
+    
+                            <div class="col-md-12 text-center">
+                                <div class="loading">Loading</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Your message has been sent. Thank you!</div>
+    
+                                <button type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- End Contact Form -->
+            </div>
+        </div>
+    </section>
+    
+  
+    
+    <!-- Modal -->
+    <div id="myModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
+        <div style="background:white; padding:20px; text-align:center;">
+            <h3>Download XML File</h3>
+            <button id="downloadButton">Download XML</button>
+            <span class="close" style="cursor:pointer; display:block; margin-top:20px;">Close</span>
+        </div>
+    </div>
+      <!-- /Contact Section khatam-->
+
+  <!-- /Contact Section ki jawa script-->
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Form ko reload hone se rokna
+    
+            // FormData se data retrieve karna
+            const data = new FormData(event.target);
+            const value = Object.fromEntries(data.entries());
+    
+            // JSON ko XML format mein convert karna
+            const xmlData = `
+                <user>
+                    <name>${value.name}</name>
+                    <email>${value.email}</email>
+                    <subject>${value.subject}</subject>
+                    <message>${value.message}</message>
+                </user>
+            `;
+    
+            // XML data ko file ke format mein convert karna
+            const blob = new Blob([xmlData], { type: 'application/xml' });
+            const url = URL.createObjectURL(blob);
+    
+            // Modal ko display karna
+            const modal = document.getElementById("myModal");
+            modal.style.display = "flex";
+    
+            // Download button par click handler
+            const downloadButton = document.getElementById('downloadButton');
+            downloadButton.onclick = function() {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'formData.xml'; // XML file ka naam
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+    
+                // Modal ko hide karna
+                modal.style.display = "none";
+            };
+        }
+    
+        // Modal close karna
+        const closeModal = document.querySelector('.close');
+        closeModal.onclick = function() {
+            document.getElementById('myModal').style.display = 'none';
+        };
+    
+        // Form ke submit event ko handle karna
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', handleSubmit);
+    </script>
+      <!-- /Contact Section ki jawa script khatam-->
+  
+      </section>
+      
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+          event.preventDefault(); // Form ke default submit ko prevent karta hai
+      
+          // Form field se data le kar ek object mein save karte hain
+          let formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+          };
+      
+          // Data ko JSON format mein convert karte hain
+          let jsonData = JSON.stringify(formData);
+      
+          // Local storage mein data ko save karte hain
+          localStorage.setItem('contactFormData', jsonData);
+      
+          console.log('Form Data Saved as JSON:', jsonData);
+      
+          // Backend ko send karne ke liye aap fetch API ka use kar sakte hain
+          /*
+          fetch('your-backend-endpoint-url', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: jsonData
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+          */
+        });
+      </script>
+      
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Address</h4>
+            <p>abc</p>
+            <p>Pakistan,Karachi</p>
+            <p></p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              <strong>Phone:</strong> <span>+123456789</span><br>
+              <strong>Email:</strong> <span>homestyler@gmail.com</span><br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>
+              <strong>Mon-Sat:</strong> <span>9AM - 11PM</span><br>
+              <strong>Sunday</strong>: <span>Closed</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- chatbot script -->
+  <script>
+    function sendMessage() {
+        const userInput = $('#userInput');
+        const chatbox = $('#chatbox');
+        
+        const userMessage = userInput.val();
+        chatbox.append(`<div class="user-message"><strong>Aap:</strong> ${userMessage}</div>`);
+        
+        const botResponse = getBotResponse(userMessage);
+        chatbox.append(`<div class="bot-message"><strong>Bot:</strong> ${botResponse}</div>`);
+        
+        userInput.val('');
+        chatbox.scrollTop(chatbox[0].scrollHeight); // Scroll to the bottom
+    }
+
+    function getBotResponse(input) {
+        const lowerInput = input.toLowerCase();
+        if (lowerInput.includes("hello")) {
+            return "Assalam-o-Alaikum! Aap kaise hain?";
+        } else if (lowerInput.includes("kya hai") || lowerInput.includes("what is")) {
+            return "Yeh aik chatbot hai jo aapke sawalon ka jawab de sakta hai.";
+        } else {
+            return "Mujhe maaf karein, main iss sawal ka jawab nahi de sakta.";
+        }
+    }
+
+    function closeChat() {
+        $('#chatContainer').css('animation', 'slideOut 0.3s ease forwards'); // Animation for closing
+        setTimeout(() => {
+            $('#chatContainer').hide(); // Hide after animation
+            $('#helpButton').show(); // Show the help button
+        }, 300);
+    }
+
+    $(document).ready(function() {
+        $('#helpButton').click(function() {
+            $('#chatContainer').toggle(); // Toggle chat visibility
+            if ($('#chatContainer').is(':visible')) {
+                $('#chatContainer').css('animation', 'slideIn 0.3s ease'); // Animation for opening
+                $(this).hide(); // Hide the help button when chat opens
+            }
+        });
+    });
+</script>
+  <!-- chatbot script khatam -->
+
+  <!-- demo request  -->
+  <script>document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('demoRequestModal');
+    const openBtn = document.getElementById('openDemoModal');
+    const closeTopBtn = document.getElementById('closeDemoModalTop');
+    const closeSuccessBtn = document.getElementById('closeDemoModalSuccess');
+    const form = document.getElementById('submitDemoForm');
+    const formWrapper = document.getElementById('demoFormWrapper');
+    const successMessage = document.getElementById('demoSuccessMessage');
+
+    // Function to open the modal
+    openBtn.onclick = function(e) {
+        e.preventDefault(); // Stop the link from navigating
+        modal.style.display = 'block';
+        // Ensure the form is visible and the success message is hidden when opening
+        formWrapper.style.display = 'block';
+        successMessage.style.display = 'none';
+        form.reset(); // Clear form fields
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Close the modal when the user clicks the top X
+    closeTopBtn.onclick = closeModal;
+
+    // Close the modal when the user clicks the success button
+    closeSuccessBtn.onclick = closeModal;
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        // --- SIMULATED SUCCESS LOGIC ---
+        // In a real application, you would use 'fetch' or 'XMLHttpRequest' 
+        // here to send data to your server and wait for a success response.
+        
+        // After receiving a successful response from the server:
+        
+        // 1. Hide the form
+        formWrapper.style.display = 'none';
+        
+        // 2. Show the success message
+        successMessage.style.display = 'block';
+
+        // NOTE: If you were sending the form data, you would do it here 
+        // before showing the success message.
+    });
+});
+</script>
+<!-- demo request fininish -->
+   
+
+</body>
+
+</html>
