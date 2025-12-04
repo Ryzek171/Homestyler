@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Responsive Slider</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 90%;
+      max-width: 1000px;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.7s ease-in-out;
+      height: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      color: white;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 25px;
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 80%;
+    }
+
+    .slide-content h2 {
+      font-size: clamp(1.5rem, 4vw, 2.8rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .slide-content p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      margin-top: 12px;
+      margin-bottom: 25px;
+      animation: fadeUp 1.3s ease forwards;
+    }
+
+    .slide-content button {
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      animation: fadeUp 1.6s ease forwards;
+    }
+
+    .slide-content button:hover {
+      background: #ff9800;
+      color: white;
+      transform: scale(1.08);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Navigation Buttons */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      font-size: 1.5rem;
+      padding: 12px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 10;
+    }
+
+    .nav-btn:hover {
+      background: #ff9800;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .prev {
+      left: 15px;
+    }
+
+    .next {
+      right: 15px;
+    }
+
+    /* Dots Navigation */
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      background: #ff9800;
+      transform: scale(1.2);
+    }
+
+    /* 📱 Responsive Design */
+    @media (max-width: 768px) {
+      .slider-container {
+        height: 400px;
+      }
+      .slide-content {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider-container {
+        height: 320px;
+      }
+      .slide-content h2 {
+        font-size: 1.4rem;
+      }
+      .slide-content p {
+        font-size: 0.85rem;
+      }
+      .nav-btn {
+        font-size: 1.2rem;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    <div class="slides">
+      <div class="slide" style="background-image: url('/assets/Slider images/slider 1.jpg');">
+        <div class="overlay"></div>
+        <div class="slide-content">
+          <h2>Transform Your Space with Timeless Design</h2>
+          <p>Discover interiors that blend modern elegance with everlasting style.
+Inspiration that turns any room into a masterpiece.</p>
+          <button>Explore</button>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image: url('/assets/Slider images/slider 2.jpg');">
+        <div class="overlay"></div>
+        <div class="slide-content">
+          <h2>Where Aesthetic Meets Comfort</h2>
+          <p>Experience beautifully balanced interiors-crafted to look stunning and feel effortlessly comfortable.</p>
+          <button>Explore</button>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image: url('/assets/Slider images/slider 3.jpg');">
+        <div class="overlay"></div>
+        <div class="slide-content">
+          <h2>Beautiful Interiors, Crafted for You</h2>
+          <p>A curated selection of designs made to match your vision, your lifestyle, and your personal taste.</p>
+          <button>Explore</button>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image: url('/assets/Slider images/slider 4.jpg');">
+        <div class="overlay"></div>
+        <div class="slide-content">
+          <h2>Design Inspirations for Every Corner</h2>
+          <p>From living spaces to cozy corners, explore fresh ideas that help you style every part of your home with perfection.</p>
+          <button>Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-btn prev">◁</button>
+    <button class="nav-btn next">▷</button>
+
+    <div class="dots"></div>
+  </div>
+
+  <script>
+    const slides = document.querySelector('.slides');
+    const slideItems = document.querySelectorAll('.slide');
+    const dotsContainer = document.querySelector('.dots');
+    let index = 0;
+
+    // Create navigation dots dynamically
+    slideItems.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => moveToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateDots() {
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    function moveToSlide(i) {
+      index = i;
+      slides.style.transform = `translateX(-${i * 100}%)`;
+      updateDots();
+    }
+
+    document.querySelector('.next').addEventListener('click', () => {
+      index = (index + 1) % slideItems.length;
+      moveToSlide(index);
+    });
+
+    document.querySelector('.prev').addEventListener('click', () => {
+      index = (index - 1 + slideItems.length) % slideItems.length;
+      moveToSlide(index);
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+      index = (index + 1) % slideItems.length;
+      moveToSlide(index);
+    }, 5000);
+  </script>
+</body>
+</html>

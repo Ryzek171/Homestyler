@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Structure</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-1: linear-gradient(135deg, #0f172a 0%, #071029 100%);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-2: rgba(255, 255, 255, 0.08);
+      --accent: #ff7b00;
+      --accent-2: #ffb86b;
+      --muted: rgba(255, 255, 255, 0.65);
+      --card-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-blur: 10px;
+      --radius: 14px;
+      --transition: 250ms cubic-bezier(.2, .9, .3, 1);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg, #dac71f 0%, #c3cfe2 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- Navbar ---------- */
+    header.nav {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      backdrop-filter: blur(8px);
+      background: black;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 10px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    .brand .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #071029;
+      font-size: 18px;
+      box-shadow: 0 6px 18px rgba(255, 123, 0, 0.18);
+    }
+
+    /* Back to Home Button Styling */
+    .brand a {
+      color: #dac71f;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color var(--transition);
+      display: block; /* Ensures it takes up full width for better clicking */
+    }
+
+    .brand a:hover {
+      color: rgb(206, 193, 193);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .nav-button {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      background: #dac71f;
+      color: black;
+      cursor: pointer;
+      transition: all 180ms;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+
+    }
+
+    /* ---------- Main layout ---------- */
+    .container {
+      width: 100%;
+      max-width: 1300px;
+      margin: 20px auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 80px 1fr 300px;
+      gap: 18px;
+    }
+
+    .palette {
+      background: black;
+      border-radius: var(--radius);
+      padding: 12px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      min-height: 420px;
+    }
+
+    .tool {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: #dac71f;
+      border: 1px solid transparent;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: black;
+      transition: all var(--transition);
+      font-size: 18px;
+
+    }
+
+    .tool:hover {
+      transform: translateY(-6px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45)
+    }
+
+    .tool.active {
+      background: #dac71f;
+      color: #071029;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(255, 123, 0, 0.15)
+    }
+
+    .canvas-wrap {
+      background: black;
+      border-radius: var(--radius);
+      padding: 12px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 520px;
+      position: relative;
+    }
+
+    .canvas-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap; /* Allows stacking on smaller screens */
+    }
+
+    .small-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap; /* Allows inputs/buttons to wrap */
+    }
+    
+    /* NEW: Separate control group for color/stroke inputs */
+    .small-controls.input-group {
+        flex-grow: 1; /* Allows it to take up available space */
+        justify-content: flex-end; /* Keeps inputs aligned to the right */
+    }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #dac71f;
+      cursor: pointer;
+      color: black;
+      transition: all var(--transition);
+
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .svg-area {
+      background: rgb(234, 229, 229);
+      border-radius: 12px;
+      overflow: hidden;
+      height: calc(100% - 72px);
+      box-shadow: black;
+      position: relative;
+    }
+
+    svg#svgCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      cursor: crosshair
+    }
+
+    .props {
+      background: black;
+      border-radius: var(--radius);
+      padding: 16px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .props h3 {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted)
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    input[type="number"],
+    input[type="color"],
+    input[type="range"],
+    select {
+      border-radius: 10px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgb(217, 209, 209);
+      color: black;
+    }
+
+    .ghost {
+      opacity: 0.6;
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    footer {
+      margin-top: 20px;
+      padding: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      background: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer .fleft {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    footer .fright {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    /* Tablet/Small Desktop Layout */
+    @media (max-width: 1000px) {
+      .container {
+        grid-template-columns: 64px 1fr 260px;
+        padding: 12px
+      }
+
+      .palette {
+        gap: 8px;
+        min-height: 360px;
+      }
+
+      .tool {
+        width: 50px;
+        height: 50px;
+      }
+
+      .props {
+        min-height: 360px
+      }
+    }
+
+    /* Mobile Layout */
+    @media (max-width: 800px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 12px;
+        gap: 12px;
+      }
+
+      /* Navbar adjustments */
+      header.nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 8px;
+        gap: 8px;
+      }
+
+      .nav-actions {
+        width: 100%;
+        justify-content: space-around;
+      }
+      
+      .brand h1 {
+        font-size: 24px;
+        margin-bottom: 4px;
+      }
+      
+      .brand > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .palette {
+        order: 2;
+        flex-direction: row;
+        justify-content: flex-start; /* Aligns tools to the left */
+        padding: 8px;
+        gap: 8px;
+        width: 100%;
+        overflow-x: auto; /* Enable scrolling for tools */
+        min-height: auto;
+      }
+
+      .tool {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .canvas-wrap {
+        order: 1;
+      }
+
+      .canvas-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .small-controls {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      
+      .small-controls.input-group {
+        justify-content: space-between; /* Spread controls evenly */
+      }
+      
+      .small-controls input[type="color"] {
+        width: 40px; /* fixed smaller width for color inputs */
+        height: 34px;
+        padding: 4px;
+        min-width: 40px;
+      }
+      
+      .small-controls label {
+        margin-right: 4px;
+      }
+
+      .small-controls input[type="number"] {
+        width: 50px !important; /* Fixed width for stroke width */
+        padding: 6px;
+      }
+
+      .props {
+        order: 3;
+        width: 100%;
+      }
+
+      .svg-area {
+        height: 60vh;
+        min-height: 300px; /* Ensure a minimum height for drawing */
+      }
+
+      /* Footer adjustments */
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    /* Extra small screen adjustments (e.g., iPhone SE size) */
+    @media (max-width: 400px) {
+        .small-controls:first-child {
+            /* Tool: Select | Selected: None to stack */
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        .small-controls:first-child .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .kbd {
+      font-family: monospace;
+      background: rgba(0, 0, 0, 0.28);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 12px
+    }
+
+    /* Highlight selected element */
+    [data-selected] {
+      stroke: #ff7b00 !important;
+      stroke-width: 3 !important;
+      cursor: grab
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="nav">
+    <div class="brand">
+
+      <div>
+        <h1>Homestyler</h1>
+        <a href="/index.html" >Back to Home</a>
+        <div class="muted"></div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <div class="nav-button" title="Undo (Ctrl+Z)" id="undoBtn"><i class="fa fa-rotate-left"></i></div>
+      <div class="nav-button" title="Redo (Ctrl+Y)" id="redoBtn"><i class="fa fa-rotate-right"></i></div>
+      <div class="nav-button" id="downloadBtn" title="Download SVG"><i class="fa fa-download"></i></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="palette" id="palette">
+      <div class="tool active" data-tool="select" title="Select / Move"><i class="fa fa-mouse-pointer"></i></div>
+      <div class="tool" data-tool="rectangle" title="Rectangle"><i class="fa fa-square"></i></div>
+      <div class="tool" data-tool="circle" title="Circle"><i class="fa fa-circle"></i></div>
+      <div class="tool" data-tool="line" title="Line"><i class="fa fa-slash"></i></div>
+      <div class="tool" data-tool="bendLine" title="Bend Line"><i class="fa fa-project-diagram"></i></div>
+      <div class="tool" data-tool="eraser" title="Eraser"><i class="fa fa-eraser"></i></div>
+      <div style="flex:1"></div>
+      <div class="muted" style="font-size:12px;text-align:center">Tip: Double-click to finish bend-line</div>
+    </aside>
+
+    <section class="canvas-wrap">
+      <div class="canvas-top">
+        <div class="small-controls">
+          <div class="btn" id="toolName">Tool: Select</div>
+          <div class="btn" id="status">Selected: <span class="ghost" id="selName" style="color: black;">None</span></div>
+        </div>
+        <div class="small-controls input-group">
+          <label class="muted">Color</label>
+          <input type="color" id="fillColor" value="#3498db" style="margin-left:8px" />
+          <div style="width:10px"></div>
+          <label class="muted">Stroke</label>
+          <input type="color" id="strokeColor" value="#071029" style="margin-left:8px" />
+          <div style="width:8px"></div>
+          <label class="muted">Stroke W</label>
+          <input type="number" id="strokeWidth" value="2" min="0" style="width:64px;margin-left:8px" />
+        </div>
+      </div>
+
+      <div class="svg-area">
+        <svg id="svgCanvas" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet"></svg>
+      </div>
+    </section>
+
+    <aside class="props">
+      <h3>Properties</h3>
+      <div class="field"><label>Position X</label><input type="number" id="propX" /></div>
+      <div class="field"><label>Position Y</label><input type="number" id="propY" /></div>
+      <div class="field"><label>Width / Radius</label><input type="number" id="propW" /></div>
+      <div class="field"><label>Height</label><input type="number" id="propH" /></div>
+      <div class="field"><label>Rotation</label><input type="range" id="propRot" min="0" max="360" /></div>
+      <div class="actions">
+        <button class="btn" id="bringFront">Bring Forward</button>
+        <button class="btn" id="sendBack">Send Back</button>
+        <button class="btn" id="deleteBtn" style="background:#dac71f">Delete</button>
+      </div>
+      <div style="margin-top:10px;color:var(--muted);font-size:13px">
+        <div><span class="kbd">Click</span> to select, <span class="kbd">Drag</span> to draw/move.</div>
+        <div style="margin-top:8px">Bend-line: Click to add points, Double-click to finish.</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="fleft">
+      
+      <div>
+       
+        <div class="muted">2025 Rehan. All rights reserved.</div>
+      </div>
+    </div>
+    <div class="fright">Tips: Use undo/redo & download. Made for quick prototyping.</div>
+  </footer>
+
+  <script>
+    // -------------------------- JS Improvements ----------------------------
+    // Fully working SVG editor with proper bend-line, rotation, move, resize, color pick, undo/redo
+    // Arrow keys support for move and rotate
+
+    // -- State
+    const svg = document.getElementById('svgCanvas');
+    const tools = Array.from(document.querySelectorAll('.tool'));
+    const toolName = document.getElementById('toolName');
+    const selName = document.getElementById('selName');
+    let currentTool = 'select', activeToolBtn = document.querySelector('.tool.active'), selected = null, isDrawing = false, isDragging = false, start = { x: 0, y: 0 }, currentElement = null, bendPoints = [];
+    let history = [], redoStack = [];
+    const fillColor = document.getElementById('fillColor');
+    const strokeColor = document.getElementById('strokeColor');
+    const strokeWidth = document.getElementById('strokeWidth');
+    const propX = document.getElementById('propX'), propY = document.getElementById('propY'), propW = document.getElementById('propW'), propH = document.getElementById('propH'), propRot = document.getElementById('propRot');
+    const bringFrontBtn = document.getElementById('bringFront'), sendBackBtn = document.getElementById('sendBack'), deleteBtn = document.getElementById('deleteBtn');
+    const undoBtn = document.getElementById('undoBtn'), redoBtn = document.getElementById('redoBtn'), downloadBtn = document.getElementById('downloadBtn');
+
+    function setActiveTool(name, btnEl) {
+      currentTool = name;
+      toolName.textContent = 'Tool: ' + name.charAt(0).toUpperCase() + name.slice(1);
+      if (activeToolBtn) activeToolBtn.classList.remove('active');
+      activeToolBtn = btnEl || document.querySelector(`.tool[data-tool="${name}"]`);
+      if (activeToolBtn) activeToolBtn.classList.add('active');
+      svg.style.cursor = (name === 'select') ? 'default' : 'crosshair';
+    }
+
+    function svgPoint(cx, cy) {
+      const r = svg.getBoundingClientRect(); return { x: cx - r.left, y: cy - r.top };
+    }
+
+    function createSVG(tag, attrs) {
+      const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) el.setAttribute(k, attrs[k]);
+      svg.appendChild(el); saveHistory();
+      return el;
+    }
+
+    function clearSelection() {
+      if (selected) { selected.removeAttribute('data-selected'); selected = null; selName.textContent = 'None'; updatePropsPanel(); }
+    }
+
+    function selectElement(el) {
+      if (!el || el === svg) return;
+      clearSelection();
+      selected = el; selected.setAttribute('data-selected', 'true'); selName.textContent = el.tagName;
+      updatePropsPanel();
+    }
+
+    function updatePropsPanel() {
+      if (!selected) { propX.value = propY.value = propW.value = propH.value = propRot.value = ''; return; }
+      const tag = selected.tagName;
+      const rot = parseFloat(selected.getAttribute('data-rot') || 0);
+      propRot.value = rot;
+      if (tag === 'rect') { propX.value = Math.round(selected.x.baseVal.value); propY.value = Math.round(selected.y.baseVal.value); propW.value = Math.round(selected.width.baseVal.value); propH.value = Math.round(selected.height.baseVal.value); }
+      else if (tag === 'circle') { propX.value = Math.round(selected.cx.baseVal.value); propY.value = Math.round(selected.cy.baseVal.value); propW.value = Math.round(selected.r.baseVal.value); propH.value = ''; }
+      else if (tag === 'line') { propX.value = Math.round(selected.x1.baseVal.value); propY.value = Math.round(selected.y1.baseVal.value); propW.value = Math.round(selected.x2.baseVal.value - selected.x1.baseVal.value); propH.value = Math.round(selected.y2.baseVal.value - selected.y1.baseVal.value); }
+      else if (tag === 'polyline') { const bbox = selected.getBBox(); propX.value = Math.round(bbox.x); propY.value = Math.round(bbox.y); propW.value = Math.round(bbox.width); propH.value = Math.round(bbox.height); }
+      fillColor.value = selected.getAttribute('fill') || '#ffffff';
+      strokeColor.value = selected.getAttribute('stroke') || '#071029';
+      strokeWidth.value = selected.getAttribute('stroke-width') || 2;
+    }
+
+    // ========== Tool clicks
+    tools.forEach(t => t.addEventListener('click', () => setActiveTool(t.dataset.tool, t)));
+
+    // ========== Mouse Events (draw/drag)
+    svg.addEventListener('mousedown', e => {
+      const p = svgPoint(e.clientX, e.clientY); start = p;
+      if (currentTool === 'eraser') { if (e.target && e.target !== svg) { e.target.remove(); saveHistory(); clearSelection(); } return; }
+      if (currentTool === 'select') {
+        if (e.target && e.target !== svg) { selectElement(e.target); isDragging = true; } else clearSelection();
+      } else if (['rectangle', 'circle', 'line'].includes(currentTool)) {
+        isDrawing = true;
+        if (currentTool === 'rectangle') currentElement = createSVG('rect', { x: p.x, y: p.y, width: 1, height: 1, fill: fillColor.value, stroke: strokeColor.value, 'stroke-width': strokeWidth.value });
+        if (currentTool === 'circle') currentElement = createSVG('circle', { cx: p.x, cy: p.y, r: 1, fill: fillColor.value, stroke: strokeColor.value, 'stroke-width': strokeWidth.value });
+        if (currentTool === 'line') currentElement = createSVG('line', { x1: p.x, y1: p.y, x2: p.x, y2: p.y, stroke: strokeColor.value, 'stroke-width': strokeWidth.value });
+      } else if (currentTool === 'bendLine') {
+        if (!currentElement) { currentElement = createSVG('polyline', { points: `${p.x},${p.y}`, fill: 'none', stroke: strokeColor.value, 'stroke-width': strokeWidth.value }); bendPoints = [p]; }
+        else { bendPoints.push(p); currentElement.setAttribute('points', bendPoints.map(pt => pt.x + ',' + pt.y).join(' ')); }
+      }
+    });
+
+    svg.addEventListener('dblclick', e => {
+      if (currentTool === 'bendLine') { currentElement = null; bendPoints = []; saveHistory(); }
+    });
+
+    // Mouse move
+    svg.addEventListener('mousemove', e => {
+      const p = svgPoint(e.clientX, e.clientY);
+      if (isDrawing && currentElement) {
+        const dx = p.x - start.x, dy = p.y - start.y;
+        if (currentTool === 'rectangle') {
+          currentElement.setAttribute('width', Math.abs(dx)); currentElement.setAttribute('height', Math.abs(dy));
+          if (dx < 0) currentElement.setAttribute('x', p.x); if (dy < 0) currentElement.setAttribute('y', p.y);
+        }
+        if (currentTool === 'circle') { const r = Math.sqrt(dx * dx + dy * dy); currentElement.setAttribute('r', r); }
+        if (currentTool === 'line') { currentElement.setAttribute('x2', p.x); currentElement.setAttribute('y2', p.y); }
+      } else if (isDragging && selected) {
+        const dx = p.x - start.x, dy = p.y - start.y; start = p;
+        const tag = selected.tagName;
+        if (tag === 'rect') { selected.x.baseVal.value += dx; selected.y.baseVal.value += dy; }
+        else if (tag === 'circle') { selected.cx.baseVal.value += dx; selected.cy.baseVal.value += dy; }
+        else if (tag === 'line') { selected.x1.baseVal.value += dx; selected.y1.baseVal.value += dy; selected.x2.baseVal.value += dx; selected.y2.baseVal.value += dy; }
+        else if (tag === 'polyline') {
+          let pts = selected.points; for (let i = 0; i < pts.numberOfItems; i++) { pts.getItem(i).x += dx; pts.getItem(i).y += dy; }
+        }
+        updatePropsPanel();
+      }
+    });
+
+    svg.addEventListener('mouseup', e => {
+      if (isDrawing) { isDrawing = false; saveHistory(); currentElement = null; }
+      if (isDragging) { isDragging = false; }
+    });
+
+    // ========== Property Inputs
+    [propX, propY, propW, propH, propRot].forEach(inp => {
+      inp.addEventListener('input', () => {
+        if (!selected) return;
+        const tag = selected.tagName;
+        if (tag === 'rect') { if (propX.value) selected.x.baseVal.value = parseFloat(propX.value); if (propY.value) selected.y.baseVal.value = parseFloat(propY.value); if (propW.value) selected.width.baseVal.value = parseFloat(propW.value); if (propH.value) selected.height.baseVal.value = parseFloat(propH.value); }
+        else if (tag === 'circle') { if (propX.value) selected.cx.baseVal.value = parseFloat(propX.value); if (propY.value) selected.cy.baseVal.value = parseFloat(propY.value); if (propW.value) selected.r.baseVal.value = parseFloat(propW.value); }
+        else if (tag === 'line') { if (propX.value) selected.x1.baseVal.value = parseFloat(propX.value); if (propY.value) selected.y1.baseVal.value = parseFloat(propY.value); if (propW.value) selected.x2.baseVal.value = parseFloat(propX.value) + parseFloat(propW.value); if (propH.value) selected.y2.baseVal.value = parseFloat(propY.value) + parseFloat(propH.value); }
+        else if (tag === 'polyline') {/* skip for now */ }
+        if (propRot.value) { selected.setAttribute('transform', 'rotate(' + propRot.value + ' ' + (propX.value || 0) + ' ' + (propY.value || 0) + ')'); }
+      });
+    });
+
+    // ========== Color Inputs
+    fillColor.addEventListener('input', () => { if (selected) selected.setAttribute('fill', fillColor.value); });
+    strokeColor.addEventListener('input', () => { if (selected) selected.setAttribute('stroke', strokeColor.value); });
+    strokeWidth.addEventListener('input', () => { if (selected) selected.setAttribute('stroke-width', strokeWidth.value); });
+
+    // ========== Buttons
+    bringFrontBtn.addEventListener('click', () => { if (selected) svg.appendChild(selected); saveHistory(); });
+    sendBackBtn.addEventListener('click', () => { if (selected) svg.insertBefore(selected, svg.firstChild); saveHistory(); });
+    deleteBtn.addEventListener('click', () => { if (selected) { selected.remove(); selected = null; saveHistory(); clearSelection(); } });
+
+    undoBtn.addEventListener('click', () => { undo(); });
+    redoBtn.addEventListener('click', () => { redo(); });
+    downloadBtn.addEventListener('click', () => { const svgData = new XMLSerializer().serializeToString(svg); const blob = new Blob([svgData], { type: "image/svg+xml" }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'drawing.svg'; a.click(); URL.revokeObjectURL(url); });
+
+    // ========== Undo/Redo
+    function saveHistory() { history.push(svg.innerHTML); if (history.length > 50) history.shift(); redoStack = []; }
+    function undo() { if (history.length < 2) return; redoStack.push(history.pop()); svg.innerHTML = history[history.length - 1]; clearSelection(); }
+    function redo() { if (redoStack.length === 0) return; const state = redoStack.pop(); history.push(state); svg.innerHTML = state; clearSelection(); }
+
+    // Select element on click
+    svg.addEventListener('click', e => { if (currentTool === 'select' && e.target !== svg) selectElement(e.target); });
+
+    // Keyboard
+    window.addEventListener('keydown', e => {
+      if (!selected) return;
+      const step = 5; let rot = parseFloat(selected.getAttribute('data-rot') || 0);
+      if (e.key === 'ArrowLeft') { moveSelected(-step, 0) }
+      if (e.key === 'ArrowRight') { moveSelected(step, 0) }
+      if (e.key === 'ArrowUp') { moveSelected(0, -step) }
+      if (e.key === 'ArrowDown') { moveSelected(0, step) }
+    });
+
+    function moveSelected(dx, dy) {
+      if (!selected) return;
+      const tag = selected.tagName;
+      if (tag === 'rect') { selected.x.baseVal.value += dx; selected.y.baseVal.value += dy; }
+      else if (tag === 'circle') { selected.cx.baseVal.value += dx; selected.cy.baseVal.value += dy; }
+      else if (tag === 'line') { selected.x1.baseVal.value += dx; selected.y1.baseVal.value += dy; selected.x2.baseVal.value += dx; selected.y2.baseVal.value += dy; }
+      else if (tag === 'polyline') { let pts = selected.points; for (let i = 0; i < pts.numberOfItems; i++) { pts.getItem(i).x += dx; pts.getItem(i).y += dy; } }
+      updatePropsPanel();
+    }
+
+  </script>
+
+</body>
+
+</html>
