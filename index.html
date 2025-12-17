@@ -366,7 +366,6 @@
 /* chatbot khatam */
 /* request demo */
 /* --- Modal Background and Positioning --- */
-/* --- Modal Background and Positioning --- */
 .cta-modal-container {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -378,26 +377,22 @@
     background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
     display: flex;
     justify-content: center;
-    align-items: center;
-    /* Remove overflow from container */
+    align-items: center; /* Center modal vertically & horizontally */
+    /* overflow removed from container */
 }
 
 /* --- Modal Box Content --- */
 .cta-modal-content {
     background-color: #fefefe;
-    /* margin removed because we use flex centering */
     padding: 30px;
-    border: 1px solid #888;
     width: 90%; /* Could be 90% or 60% */
     max-width: 500px; /* Max width for larger screens */
-    max-height: 80%; /* Max height so content can scroll inside */
-    overflow-y: auto; /* Scroll inside modal only */
+    max-height: 80%; /* Maximum height of modal */
+    overflow-y: auto; /* Scroll only inside modal */
     border-radius: 8px;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-
-
 
 /* --- Close Icon Styling --- */
 .demo-modal-close-icon {
@@ -443,7 +438,7 @@
 
 /* --- Submit Button Styling --- */
 .demo-submit-btn {
-    background-color:#dac71f; /* Use your primary brand color */
+    background-color:#dac71f; /* Your primary brand color */
     color: white;
     padding: 12px 20px;
     border: none;
