@@ -366,6 +366,7 @@
 /* chatbot khatam */
 /* request demo */
 /* --- Modal Background and Positioning --- */
+/* --- Modal Background and Positioning --- */
 .cta-modal-container {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -374,22 +375,28 @@
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Remove overflow from container */
 }
 
 /* --- Modal Box Content --- */
 .cta-modal-content {
     background-color: #fefefe;
-    margin: 10% auto; /* 10% from the top and centered */
+    /* margin removed because we use flex centering */
     padding: 30px;
     border: 1px solid #888;
     width: 90%; /* Could be 90% or 60% */
     max-width: 500px; /* Max width for larger screens */
+    max-height: 80%; /* Max height so content can scroll inside */
+    overflow-y: auto; /* Scroll inside modal only */
     border-radius: 8px;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 
 
 /* --- Close Icon Styling --- */
