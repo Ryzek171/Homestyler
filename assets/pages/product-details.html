@@ -671,7 +671,7 @@ footer {
                 <div class="empty-cart">
                     <h2>Your cart is empty</h2>
                     <p>Looks like you haven't added any items to your cart yet.</p>
-                    <a href="/houseservice.html" class="continue-shopping">Continue Shopping</a>
+                    <a href="../../houseservice.html" class="continue-shopping">Continue Shopping</a>
                 </div>
             `;
             return;
@@ -684,11 +684,10 @@ footer {
 
         cartItems.forEach(item => {
             cartHTML += `
-              <div class="item-image">
-  <img src="../../${item.image}" alt="${item.name}">
-</div>
-
-
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="item-image">
+                        <img src="../../${item.image}" alt="${item.name}">
+                    </div>
                     <div class="item-details">
                         <h3 class="item-name">${item.name}</h3>
                         <p class="item-price">$${item.price.toFixed(2)}</p>
@@ -846,10 +845,4 @@ footer {
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
