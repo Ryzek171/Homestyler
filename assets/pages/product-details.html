@@ -685,9 +685,10 @@ footer {
         cartItems.forEach(item => {
             cartHTML += `
                 <div class="cart-item" data-id="${item.id}">
-                    <div class="item-image">
-                        <img src="../${item.image}" alt="${item.name}">
-                    </div>
+                <div class="item-image">
+  <img src="../../${item.image}" alt="${item.name}">
+</div>
+
                     <div class="item-details">
                         <h3 class="item-name">${item.name}</h3>
                         <p class="item-price">$${item.price.toFixed(2)}</p>
@@ -847,5 +848,6 @@ footer {
 </body>
 
 </html>
+
 
 
