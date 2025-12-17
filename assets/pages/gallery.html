@@ -1268,10 +1268,18 @@ class FashionGallery {
   for (let i = 1; i <= 50; i++) {
     const paddedNumber = String(i).padStart(2, "0");
     this.fashionImages.push(
-     `assets/homestyler%20pics/house%20exteriar/${paddedNumber}.jpg`
-
+      `assets/homestyler pics/house exteriar/${paddedNumber}.jpg`
     );
   }
+
+  // 50 Home Styling Items
+  this.imageData = [
+    {
+      number: "01",
+      title: "Warm Corners, Calm Living",
+      description: "Small spaces shine when you add gentle light and soft textures that slow the room’s heartbeat."
+    },
+    {
 
   // 50 Home Styling Items
   this.imageData = [
@@ -2452,5 +2460,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+
 
 
