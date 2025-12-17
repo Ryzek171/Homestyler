@@ -628,6 +628,11 @@ footer {
 <script>
 const shippingFee = 50;
 
+// BASE_PATH set kar do
+const BASE_PATH = location.hostname.includes('github.io')
+    ? '/Homestyler/assets/cart-images/'  // GitHub Pages path
+    : '/assets/cart-images/';            // Local path
+
 document.addEventListener('DOMContentLoaded', function() {
     // Cart load karo ya blank set karo
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -641,12 +646,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (existingItem) {
             existingItem.quantity += 1; // agar pehle se hai to quantity badhao
         } else {
-            // Naya product add karo
+            // Naya product add karo, sirf relative path store karo
             cartItems.push({
                 id: Date.now(),
                 name: selectedProduct.name,
                 price: parseFloat(selectedProduct.price.replace(/[^0-9.-]+/g,"")),
-                image: selectedProduct.image, // relative path save karo
+                image: selectedProduct.image, // e.g. "Furniture/comfortable-sofas/sofa-1.jpg"
                 quantity: 1
             });
         }
@@ -677,17 +682,11 @@ function renderCart(cartItems) {
         return;
     }
 
-    let cartHTML = `
-        <div class="cart-container">
-            <div class="cart-items">
-    `;
+    let cartHTML = `<div class="cart-container"><div class="cart-items">`;
 
     cartItems.forEach(item => {
-        // Image path fix for relative location
-        let imagePath = item.image;
-        if (!imagePath.startsWith('http')) {
-            imagePath = '../../' + item.image;
-        }
+        // Ab imagePath hamesha correct BASE_PATH ke saath
+        const imagePath = BASE_PATH + item.image;
 
         cartHTML += `
             <div class="cart-item" data-id="${item.id}">
@@ -763,7 +762,11 @@ function updateLocalStorage() {
         const id = item.getAttribute('data-id');
         const name = item.querySelector('.item-name').textContent;
         const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
-        const image = item.querySelector('img').getAttribute('src'); // <-- fixed
+        // Sirf relative path save karo
+        let image = item.querySelector('.item-image img').getAttribute('src');
+        if (image.startsWith(BASE_PATH)) {
+            image = image.replace(BASE_PATH, ''); // remove BASE_PATH to store relative
+        }
         const quantity = parseInt(item.querySelector('.item-quantity').value);
 
         cartItems.push({ id, name, price, image, quantity });
@@ -851,6 +854,8 @@ function setupEventListeners() {
 </script>
 
 
+
 </body>
 </html>
+
 
