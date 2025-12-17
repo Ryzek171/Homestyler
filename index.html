@@ -365,8 +365,104 @@
         }
 /* chatbot khatam */
 /* request demo */
-* --- Modal Background and Positioning --- */ .cta-modal-container { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1050; /* Sit on top of everything */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */ } /* --- Modal Box Content --- */ .cta-modal-content { background-color: #fefefe; margin: 10% auto; /* 10% from the top and centered */ padding: 30px; border: 1px solid #888; width: 90%; /* Could be 90% or 60% */ max-width: 500px; /* Max width for larger screens */ border-radius: 8px; position: relative; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); } /* --- Close Icon Styling --- */ .demo-modal-close-icon { color: #aaa; position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer; } .demo-modal-close-icon:hover, .demo-modal-close-icon:focus { color: #333; text-decoration: none; } /* --- Form Field Styling --- */ #submitDemoForm label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: 600; color: #333; } #submitDemoForm input[type="text"], #submitDemoForm input[type="email"], #submitDemoForm select, #submitDemoForm textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; /* Ensures padding doesn't affect total width */ font-size: 16px; } #submitDemoForm textarea { resize: vertical; } /* --- Submit Button Styling --- */ .demo-submit-btn { background-color:#dac71f; /* Use your primary brand color */ color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; font-size: 16px; width: 100%; transition: background-color 0.3s ease; } .demo-submit-btn:hover { background-color: #000000; } /* --- Success Message Styling --- */ .cta-success-state { text-align: center; } .cta-success-state h4 { color: #4CAF50; font-size: 1.8rem
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ; } 
+/* --- Modal Background and Positioning --- */
+/* --- Modal Background and Positioning --- */
+.cta-modal-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center; /* Center modal vertically & horizontally */
+    overflow: hidden; /* Prevent background scroll */
+}
+
+/* --- Modal Box Content --- */
+.cta-modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    width: 90%; 
+    max-width: 500px;
+    max-height: 80vh; /* Max height based on viewport */
+    overflow-y: auto; /* Scroll only inside modal */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 0 auto; /* Center horizontally */
+}
+
+
+/* --- Close Icon Styling --- */
+.demo-modal-close-icon {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.demo-modal-close-icon:hover,
+.demo-modal-close-icon:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+/* --- Form Field Styling --- */
+#submitDemoForm label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+#submitDemoForm input[type="text"],
+#submitDemoForm input[type="email"],
+#submitDemoForm select,
+#submitDemoForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    font-size: 16px;
+}
+#submitDemoForm textarea {
+    resize: vertical;
+}
+
+/* --- Submit Button Styling --- */
+.demo-submit-btn {
+    background-color:#dac71f; /* Use your primary brand color */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.demo-submit-btn:hover {
+    background-color: #000000;
+}
+
+/* --- Success Message Styling --- */
+.cta-success-state {
+    text-align: center;
+}
+.cta-success-state h4 {
+    color: #4CAF50;
+    font-size: 1.8rem;
+}  bhai ye meri styling he isme adjust karo over flow ko
 </style>
 
 <body class="index-page">
