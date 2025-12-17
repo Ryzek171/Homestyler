@@ -624,225 +624,233 @@ footer {
         </div>
     </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script>
-    const shippingFee = 50;
+const shippingFee = 50;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Cart load karo ya blank set karo
-        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+document.addEventListener('DOMContentLoaded', function() {
+    // Cart load karo ya blank set karo
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-        // Agar selectedProduct localStorage me hai (Add to Cart se aya)
-        const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
-        if (selectedProduct) {
-            // Check agar product pehle se cart me exist karta hai
-            const existingItem = cartItems.find(item => item.name === selectedProduct.name);
+    // Agar selectedProduct localStorage me hai (Add to Cart se aya)
+    const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+    if (selectedProduct) {
+        // Check agar product pehle se cart me exist karta hai
+        const existingItem = cartItems.find(item => item.name === selectedProduct.name);
 
-            if (existingItem) {
-                existingItem.quantity += 1; // agar pehle se hai to quantity badhao
-            } else {
-                // Naya product add karo
-                cartItems.push({
-                    id: Date.now(),
-                    name: selectedProduct.name,
-                    price: parseFloat(selectedProduct.price.replace(/[^0-9.-]+/g,"")),
-                    image: selectedProduct.image,
-                    quantity: 1
-                });
-            }
-
-            // SelectedProduct ko ek dafa add hone ke baad remove kar do
-            localStorage.removeItem('selectedProduct');
-
-            // Cart update karo
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        if (existingItem) {
+            existingItem.quantity += 1; // agar pehle se hai to quantity badhao
+        } else {
+            // Naya product add karo
+            cartItems.push({
+                id: Date.now(),
+                name: selectedProduct.name,
+                price: parseFloat(selectedProduct.price.replace(/[^0-9.-]+/g,"")),
+                image: selectedProduct.image, // relative path save karo
+                quantity: 1
+            });
         }
 
-        renderCart(cartItems);
-        setupEventListeners();
-    });
+        // SelectedProduct ko ek dafa add hone ke baad remove kar do
+        localStorage.removeItem('selectedProduct');
 
-    // Cart render function
-    function renderCart(cartItems) {
-        const cartContainer = document.getElementById('cartContainer');
-
-        if (!cartItems || cartItems.length === 0) {
-            cartContainer.innerHTML = `
-                <div class="empty-cart">
-                    <h2>Your cart is empty</h2>
-                    <p>Looks like you haven't added any items to your cart yet.</p>
-                    <a href="../../houseservice.html" class="continue-shopping">Continue Shopping</a>
-                </div>
-            `;
-            return;
-        }
-
-        let cartHTML = `
-            <div class="cart-container">
-                <div class="cart-items">
-        `;
-
-        cartItems.forEach(item => {
-            cartHTML += `
-                <div class="cart-item" data-id="${item.id}">
-                    <div class="item-image">
-                        <img src="../../${item.image}" alt="${item.name}">
-                    </div>
-                    <div class="item-details">
-                        <h3 class="item-name">${item.name}</h3>
-                        <p class="item-price">$${item.price.toFixed(2)}</p>
-                        <div class="quantity-controls">
-                            <button class="decrease-quantity">-</button>
-                            <input type="number" class="item-quantity" value="${item.quantity}" min="1">
-                            <button class="increase-quantity">+</button>
-                        </div>
-                    </div>
-                    <button class="remove-item">Remove</button>
-                </div>
-            `;
-        });
-
-        cartHTML += `
-                </div>
-                <div class="cart-summary">
-                    <h2 class="summary-title">Order Summary</h2>
-                    <div class="summary-details">
-                        <div class="summary-row">
-                            <span>Subtotal:</span>
-                            <span id="subtotal">$0.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Shipping:</span>
-                            <span id="shippingFee">$${shippingFee.toFixed(2)}</span>
-                        </div>
-                        <div class="summary-row grand-total">
-                            <span>Total:</span>
-                            <span id="grandTotal">$0.00</span>
-                        </div>
-                    </div>
-                    <div class="cart-actions">
-                        <button id="clearCartBtn">Clear Cart</button>
-                        <button id="checkoutBtn">Proceed to Checkout</button>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        cartContainer.innerHTML = cartHTML;
-        updateTotals();
-    }
-
-    // Update totals
-    function updateTotals() {
-        const cartItems = document.querySelectorAll('.cart-item');
-        let subtotal = 0;
-
-        cartItems.forEach(item => {
-            const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
-            const quantity = parseInt(item.querySelector('.item-quantity').value);
-            subtotal += price * quantity;
-        });
-
-        const grandTotal = subtotal + shippingFee;
-        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-        document.getElementById('grandTotal').textContent = `$${grandTotal.toFixed(2)}`;
-
-        updateLocalStorage();
-    }
-
-    // Update local storage
-    function updateLocalStorage() {
-        const cartItems = [];
-        document.querySelectorAll('.cart-item').forEach(item => {
-            const id = item.getAttribute('data-id');
-            const name = item.querySelector('.item-name').textContent;
-            const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
-            const image = item.querySelector('img').src;
-            const quantity = parseInt(item.querySelector('.item-quantity').value);
-
-            cartItems.push({ id, name, price, image, quantity });
-        });
-
+        // Cart update karo
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
 
-    // Event listeners
-    function setupEventListeners() {
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('increase-quantity')) {
-                const input = e.target.parentElement.querySelector('.item-quantity');
-                input.value = parseInt(input.value) + 1;
-                updateTotals();
-            } else if (e.target.classList.contains('decrease-quantity')) {
-                const input = e.target.parentElement.querySelector('.item-quantity');
-                if (parseInt(input.value) > 1) {
-                    input.value = parseInt(input.value) - 1;
-                    updateTotals();
-                }
-            } else if (e.target.classList.contains('remove-item')) {
-                const item = e.target.closest('.cart-item');
-                item.remove();
-                updateTotals();
-                updateLocalStorage();
-                if (document.querySelectorAll('.cart-item').length === 0) {
-                    renderCart([]);
-                }
-            }
-        });
+    renderCart(cartItems);
+    setupEventListeners();
+});
 
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('item-quantity')) updateTotals();
-        });
+// Cart render function
+function renderCart(cartItems) {
+    const cartContainer = document.getElementById('cartContainer');
 
-        document.addEventListener('click', function(e) {
-            if (e.target.id === 'clearCartBtn') {
-                Swal.fire({
-                    title: 'Clear Cart?',
-                    text: "This will remove all items from your cart.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, clear it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        localStorage.removeItem('cartItems');
-                        renderCart([]);
-                        Swal.fire('Cleared!', 'Your cart has been cleared.', 'success');
-                    }
-                });
-            }
-
-            if (e.target.id === 'checkoutBtn') {
-                document.getElementById('paymentModal').style.display = 'block';
-            }
-        });
-
-        document.querySelector('.close').addEventListener('click', function() {
-            document.getElementById('paymentModal').style.display = 'none';
-        });
-
-        window.addEventListener('click', function(e) {
-            if (e.target === document.getElementById('paymentModal')) {
-                document.getElementById('paymentModal').style.display = 'none';
-            }
-        });
-
-        document.getElementById('paymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'success',
-                title: 'Purchase Complete!',
-                text: 'Thank you for your order!',
-                confirmButtonText: 'Continue Shopping'
-            }).then(() => {
-                localStorage.removeItem('cartItems');
-                document.getElementById('paymentModal').style.display = 'none';
-                renderCart([]);
-            });
-        });
+    if (!cartItems || cartItems.length === 0) {
+        cartContainer.innerHTML = `
+            <div class="empty-cart">
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added any items to your cart yet.</p>
+                <a href="../../houseservice.html" class="continue-shopping">Continue Shopping</a>
+            </div>
+        `;
+        return;
     }
+
+    let cartHTML = `
+        <div class="cart-container">
+            <div class="cart-items">
+    `;
+
+    cartItems.forEach(item => {
+        // Image path fix for relative location
+        let imagePath = item.image;
+        if (!imagePath.startsWith('http')) {
+            imagePath = '../../' + item.image;
+        }
+
+        cartHTML += `
+            <div class="cart-item" data-id="${item.id}">
+                <div class="item-image">
+                    <img src="${imagePath}" alt="${item.name}">
+                </div>
+                <div class="item-details">
+                    <h3 class="item-name">${item.name}</h3>
+                    <p class="item-price">$${item.price.toFixed(2)}</p>
+                    <div class="quantity-controls">
+                        <button class="decrease-quantity">-</button>
+                        <input type="number" class="item-quantity" value="${item.quantity}" min="1">
+                        <button class="increase-quantity">+</button>
+                    </div>
+                </div>
+                <button class="remove-item">Remove</button>
+            </div>
+        `;
+    });
+
+    cartHTML += `
+            </div>
+            <div class="cart-summary">
+                <h2 class="summary-title">Order Summary</h2>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span id="shippingFee">$${shippingFee.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row grand-total">
+                        <span>Total:</span>
+                        <span id="grandTotal">$0.00</span>
+                    </div>
+                </div>
+                <div class="cart-actions">
+                    <button id="clearCartBtn">Clear Cart</button>
+                    <button id="checkoutBtn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    cartContainer.innerHTML = cartHTML;
+    updateTotals();
+}
+
+// Update totals
+function updateTotals() {
+    const cartItems = document.querySelectorAll('.cart-item');
+    let subtotal = 0;
+
+    cartItems.forEach(item => {
+        const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+        const quantity = parseInt(item.querySelector('.item-quantity').value);
+        subtotal += price * quantity;
+    });
+
+    const grandTotal = subtotal + shippingFee;
+    document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('grandTotal').textContent = `$${grandTotal.toFixed(2)}`;
+
+    updateLocalStorage();
+}
+
+// Update local storage
+function updateLocalStorage() {
+    const cartItems = [];
+    document.querySelectorAll('.cart-item').forEach(item => {
+        const id = item.getAttribute('data-id');
+        const name = item.querySelector('.item-name').textContent;
+        const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+        const image = item.querySelector('img').getAttribute('src'); // <-- fixed
+        const quantity = parseInt(item.querySelector('.item-quantity').value);
+
+        cartItems.push({ id, name, price, image, quantity });
+    });
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+// Event listeners
+function setupEventListeners() {
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('increase-quantity')) {
+            const input = e.target.parentElement.querySelector('.item-quantity');
+            input.value = parseInt(input.value) + 1;
+            updateTotals();
+        } else if (e.target.classList.contains('decrease-quantity')) {
+            const input = e.target.parentElement.querySelector('.item-quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+                updateTotals();
+            }
+        } else if (e.target.classList.contains('remove-item')) {
+            const item = e.target.closest('.cart-item');
+            item.remove();
+            updateTotals();
+            updateLocalStorage();
+            if (document.querySelectorAll('.cart-item').length === 0) {
+                renderCart([]);
+            }
+        }
+    });
+
+    document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('item-quantity')) updateTotals();
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target.id === 'clearCartBtn') {
+            Swal.fire({
+                title: 'Clear Cart?',
+                text: "This will remove all items from your cart.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, clear it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('cartItems');
+                    renderCart([]);
+                    Swal.fire('Cleared!', 'Your cart has been cleared.', 'success');
+                }
+            });
+        }
+
+        if (e.target.id === 'checkoutBtn') {
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+    });
+
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('paymentModal').style.display = 'none';
+    });
+
+    window.addEventListener('click', function(e) {
+        if (e.target === document.getElementById('paymentModal')) {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+    });
+
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            title: 'Purchase Complete!',
+            text: 'Thank you for your order!',
+            confirmButtonText: 'Continue Shopping'
+        }).then(() => {
+            localStorage.removeItem('cartItems');
+            document.getElementById('paymentModal').style.display = 'none';
+            renderCart([]);
+        });
+    });
+}
 </script>
+
 
 </body>
 </html>
+
